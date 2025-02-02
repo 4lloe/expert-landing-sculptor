@@ -8,18 +8,21 @@ const products = [
     title: "Корпоративные тренинги",
     description: "Эффективные программы обучения для развития вашей команды",
     link: "/trainings",
+    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
   },
   {
     icon: Users,
     title: "Фасилитация",
     description: "Профессиональное ведение стратегических сессий и групповых обсуждений",
     link: "/facilitation",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
   },
   {
     icon: FileText,
     title: "Написание грантов",
     description: "Помощь в подготовке и оформлении заявок на гранты",
     link: "/grants",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e"
   },
 ];
 
@@ -38,14 +41,24 @@ const Products = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-2xl hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              <product.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-accent mb-4">{product.title}</h3>
-              <p className="text-accent/80 mb-6">{product.description}</p>
-              <Button variant="outline" className="w-full">
-                Подробнее
-              </Button>
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <product.icon className="absolute bottom-4 left-4 w-8 h-8 text-white" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-accent mb-4">{product.title}</h3>
+                <p className="text-accent/80 mb-6">{product.description}</p>
+                <Button variant="outline" className="w-full">
+                  Подробнее
+                </Button>
+              </div>
             </motion.div>
           ))}
         </div>
